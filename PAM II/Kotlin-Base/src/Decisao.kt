@@ -2,6 +2,7 @@ fun decisao(){
     val BomHumor = true
     print("Hoje estou ${if (BomHumor) "feliz" else "chateado"} ")
     print("\n")
+    print("\n")
 
 
     val nota = 6.3

@@ -8,15 +8,7 @@ fun repetição(){
         else -> print("Nota invalida")
     }
 
-    print("\n\n")
 
-    var opcao = 0
-    while(opcao != -1){
-        val line = readLine() ?: "0"
-        opcao = line.toIntOrNull() ?: 0
-        println("Você escolheu $opcao")
-    }
-    println("Até")
 
     print("\n\n")
 
@@ -60,4 +52,15 @@ fun repetição(){
         }
         println("Atual: $i")
     }
+
+
+    print("\n\n")
+
+    var opcao = 0
+    while(opcao != -1){
+        val line = readLine() ?: "0"
+        opcao = line.toIntOrNull() ?: 0
+        println("Você escolheu $opcao")
+    }
+    println("Até")
 }
