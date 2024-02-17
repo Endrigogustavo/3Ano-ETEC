@@ -14,29 +14,38 @@ fun main() {
     println("10-Inline")
     println("11-Inline parte 2")
     println("12-Duas funções")
+    println("-1 Para Sair")
 
     println("--------------------")
 println("Selecione um numero")
 
 
-    val input = Scanner(System.`in`)
-    val Num = input.nextInt()
 
 
-    when(Num){
-        1-> variaveis()
-        2-> ParametrosSoma(4,5)
-        3-> println(ReturnSoma(11))
-        4-> Vetor()
-        5-> decisao()
-        6-> notação()
-        7-> repetição()
-        8-> indice()
-        9-> matriz()
-        10-> inline()
-        11-> inline2()
-        12-> duasfuncoes()
-        in 1 .. 12 -> print("Finalizando")
-        else -> print("Numero Invalido")
+        var Num = 0
+    while(Num != -1) {
+        
+       // val input = Scanner(System.`in`)
+       // var Num = input.nextInt()
+
+        val line = readLine() ?: "0"
+        Num = line.toIntOrNull() ?: 0
+
+        when (Num) {
+            1 -> variaveis()
+            2 -> ParametrosSoma(4, 5)
+            3 -> println(ReturnSoma(11))
+            4 -> Vetor()
+            5 -> decisao()
+            6 -> notação()
+            7 -> repetição()
+            8 -> indice()
+            9 -> matriz()
+            10 -> inline()
+            11 -> inline2()
+            12 -> duasfuncoes()
+            in -1..12 -> print("Finalizando")
+            else -> print("Numero Invalido")
+        }
     }
 }
