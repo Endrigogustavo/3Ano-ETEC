@@ -1,0 +1,2 @@
+
+composer create-project --prefer-disc laravel/laravel example-app
