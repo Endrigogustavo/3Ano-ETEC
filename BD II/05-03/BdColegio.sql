@@ -7,9 +7,11 @@ create table Disciplinas(
 CodDisciplinas int,
 NomeDisciplinas varchar(55) Not Null,
 
-primary key CodDisciplinas 
+primary key (CodDisciplinas)
 
 ) 
+
+select * from Disciplinas
 
 insert into Disciplinas(CodDisciplinas, NomeDisciplinas)
 values (11,'BD I');
@@ -46,11 +48,13 @@ CodDisc2 int,
 CodDisc3 int,
 
 primary key (CodCurso) ,
-foreign key (CodDisc1) references Disciplinas
-foreign key (CodDisc2) references Disciplinas
+foreign key (CodDisc1) references Disciplinas,
+foreign key (CodDisc2) references Disciplinas,
 foreign key (CodDisc3) references Disciplinas
 
 ) 
+
+select * from Cursos
 
 
 insert into Cursos(Nome, CodDisc1 ,CodDisc2,CodDisc3)
@@ -92,5 +96,4 @@ values
  (1014,'Carina Melo','Rua Osvaldo Ramos, 88','Mogi Guaçu',03),
  (1015,'Pedro Mello','Rua Itororó, 3999','Mogi Mirim',03);
 
-  
-
+ select * from Alunos
