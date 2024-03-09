@@ -4,7 +4,7 @@
 
 create table Disciplinas( 
 
-CodDisciplinas int,
+CodDisciplinas int PRIMARY KEY,
 NomeDisciplinas varchar(55) Not Null,
 
 primary key (CodDisciplinas)
@@ -41,7 +41,7 @@ values (33,'DS III');
 
 create table Cursos( 
 
-CodCurso int identity ,
+CodCurso int identity PRIMARY KEY ,
 Nome varchar(55)  Not Null, 
 CodDisc1 int,
 CodDisc2 int,
@@ -66,7 +66,7 @@ values ('Tecnico de Infromatica',31,32,33);
 
 create table Alunos( 
 
-Matricula int, 
+Matricula int PRIMARY KEY, 
 Nome varchar(55)  Not Null, 
 Endereco varchar(105),
 Cidade varchar(55), 
