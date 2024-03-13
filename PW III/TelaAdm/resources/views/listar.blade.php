@@ -37,7 +37,7 @@
 <br>
 
 
-
+<div class="table-responsive">
 <table class="table table-striped-columns">
     <thead class="table-primary">
       <tr>
@@ -80,7 +80,7 @@
       </tr>
     </tbody>
   </table>
-
+  </div>
 
 </body>
 </html>
