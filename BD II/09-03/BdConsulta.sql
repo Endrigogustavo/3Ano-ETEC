@@ -3,10 +3,10 @@ use BdClinica;
 
 CREATE TABLE Ambulatorios (
   Nroa Int,
-  Andar Int(3) Not Null,
+  Andar Int Not Null,
   Capacidade Int,
 
-  PRIMARY KEY (Nroa),
+  PRIMARY KEY (Nroa)
 );
 
 INSERT INTO Ambulatorios (Nroa, Andar, Capacidade) VALUES
@@ -33,8 +33,8 @@ CREATE TABLE Medicos (
 INSERT INTO Medicos (CodM, Nome, Nascimento, Especialidade, CPF, Cidade, Nroa) VALUES
 (1, 'João', '01/01/1980', 'ortopedia', 10000100000, 'Florianópolis', 1),
 (2, 'Maria', '02/02/1981', 'traumatologia', 10000110000, 'Blumenau', 2),
-(3, 'Pedro', '03/03/1982', 'pediatria', 11000100000, 'São José', 2),
-(4, 'Carlos', '04/04/2000', 'ortopedia', 11000110000, 'Joinville', Null),
+(3, 'Pedro', '03/03/1982', 'pediatria', 11000100000, 'São José', 5),
+(4, 'Carlos', '04/04/2000', 'ortopedia', 11000110000, 'Joinville', 4),
 (5, 'Marcia', '03/05/1999', 'neurologia', 11000111000, 'Biguaçu', 3);
 
 
@@ -63,10 +63,12 @@ CREATE TABLE Funcionarios (
   Nascimento Date,
   CPF Varchar(14) UNIQUE,
   Cidade Varchar(30),
-  Salario Double(10),
-  Cargo Varchar(20)
+  Salario float,
+  Cargo Varchar(20),
+  Nroa int,
 
-  PRIMARY KEY (CodF)
+  PRIMARY KEY (CodF),
+  FOREIGN KEY (Nroa) REFERENCES Ambulatorios
 );
 
 INSERT INTO Funcionarios (CodF, Nome, Nascimento, Cidade, Salario, CPF, Cargo, Nroa) VALUES
@@ -100,9 +102,15 @@ INSERT INTO Consultas (CodM, CodP, Data, Hora) VALUES
 (4, 4, '2006/06/20', '13:00'),
 (4, 4, '2006/06/22', '19:30');
 
+Select * from Ambulatorios
+Select * from Pacientes
+Select * from Funcionarios
+Select * from Consultas 
+Select * from Medicos
+
 Update Pacientes Set cidade = 'Ilhota' WHERE CodP=2;
 
-Update Consultas Set Data=2006-07-04, Hora = '12:00' WHERE CodM=1 AND CodP=4;
+Update Consultas Set Data='2006/07/04', Hora = '12:00' WHERE CodM=1 AND CodP=4;
 
 Update Pacientes Set Doenca= 'gastrite' WHERE CodP=1;
 
@@ -115,6 +123,8 @@ Delete FROM Funcionarios WHERE CodF=4;
 
 Delete FROM Consultas WHERE Hora >= '19:00';
 
-Delete FROM Pacientes WHERE Doenca='gastrite' OR Nascimento >= 2014/01/01;
+DELETE FROM Consultas
+WHERE CodP IN (SELECT CodP FROM Pacientes WHERE  Doenca = 'gastrite');
+DELETE FROM Pacientes WHERE doenca='gastrite' OR Nascimento >= '2014-01-01';
 
-Delete FROM Medicos WHERE cidade = 'Biguacu' OR cidade = 'Palhoca';
+Delete FROM Medicos WHERE cidade = 'Biguaçu' OR cidade = 'Palhoca';
