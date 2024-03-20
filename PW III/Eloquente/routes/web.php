@@ -13,6 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [ContatoController::class, "index" ]);
+Route::get('/', [contatocontroler::class, "index" ]);
 
-Route::post('/adicionar', [ContatoController::class, "adicionar" ]);
+Route::post('/adicionar', [contatocontroler::class, "adicionar" ]);
