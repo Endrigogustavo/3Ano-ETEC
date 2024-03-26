@@ -190,3 +190,41 @@ Select avg(Cod_Regiao) from Territorio
 -- Operadores Numericos
 Select * from Territorio where Cod_Regiao = 2
 Select * from Territorio where Cod_Regiao = 2 or Cod_Regiao = 3
+
+-- Operadores Coringa
+Select * from Territorio where Territoriodescricao like 'S%'
+Select * from Territorio where Cod_Territorio like '7%'
+Select * from Envio where Pais like 'Brazil'
+
+Select * from Envio where Frete > 50
+Select * from Envio where Regiao is NULL
+
+-- Data
+Select * from Envio where datepart(month from Dataenvio) = 8
+
+-- Entre
+Select * from Envio where Cod_Envio between 10250 and 10256
+
+Select * from Envio where Cidade like 'R%'
+Select * from Categoria where Descricao not like 'cereal'
+Select * from Categoria where Cod_Categoria < 5
+
+-- Count
+Select count(Cod_Envio) from Envio where Pais like 'Germany'
+Select count(Cod_Envio) from Envio where Cidade like 'Rio de Janeiro'
+Select count(Frete) from Envio
+Select count(Cod_Envio) from Envio where Regiao like 'Sudeste'
+Select count(Cod_Envio) from Envio
+Select * from Envio where Regiao is not null
+Select count(Cod_Regiao) from Territorio where Cod_Regiao = 2
+Select count(Cod_Regiao) from Territorio where Cod_Regiao = 4
+Select * from Territorio where Cod_Regiao = 2 AND Territoriodescricao like 'S%'
+Select * from Envio where Cidade in ('Bern', 'Lyon', 'Resende')
+Select * from Envio where Cidade not in ('Bern', 'Lyon', 'Resende')
+Select distinct Regiao from Envio
+Select * from Envio where datepart(month from Dataenvio) = 7
+Select * from Envio where datepart(day from DataEnvio ) = 08 and datepart(month from DataEnvio 
+) = 08 and datepart(year from DataEnvio ) = 1996
+Select * from Envio where datepart(year from DataEnvio ) = 1996 and datepart(month from DataEnvio ) > 11
+
+
