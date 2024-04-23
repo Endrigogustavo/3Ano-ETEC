@@ -1,85 +1,118 @@
-CREATE DATABASE BdEmpresa
-USE BdEmpresa
+CREATE DATABASE BD_LojaCD
+USE BD_LojaCD
 
-Create table Departamentos(
-	Codigo_depto int,
-	NomeDepto varchar(20),
-	PRIMARY KEY (Codigo_depto)
+CREATE TABLE CDs(
+	COD_CD INT NOT NULL,
+	Nome_CD VARCHAR(120) NOT NULL,
+    Dt_Compra DATE NOT NULL,
+    Valor_Pago FLOAT NOT NULL,
+    Local_Compra VARCHAR(150) NOT NULL,
+    Album VARCHAR(3) NOT NULL    
+    PRIMARY KEY(COD_CD)
 );
 
-
-Create table Funcionarios(
-	Codigo_func Int,
-	NomeFunc Varchar(55),
-	SobreNome Varchar(55),
-	DataNasci Date,
-	CPF varchar(20),
-	RG varchar(30),
-	Endereco varchar(70),
-	CEP varchar(10),
-	Cidade varchar(20),
-	Fone varchar(14),
-	Funcao varchar(30),
-	Salario Float,
-	CodDepartamento int,
-
-	  PRIMARY KEY (Codigo_func),
-	  FOREIGN KEY (CodDepartamento) REFERENCES Departamentos
+CREATE TABLE Musica(
+	COD_CD INT NOT NULL,
+	Numero_Musica INT NOT NULL,
+    Nome_Musica VARCHAR(120) NOT NULL,
+    Artista VARCHAR(100) NOT NULL,
+    Tempo TIME
+	FOREIGN KEY (COD_CD) REFERENCES CDs
 );
 
+INSERT INTO CDs (COD_CD, Nome_CD, Dt_Compra, Valor_Pago, Local_Compra, Album)
+VALUES
+(1, 'Greatest Hits', '2023-01-15', 25.99, 'Amazon', 'sim'),
+(2, 'Pop Anthems', '2023-03-05', 19.99, 'Music Store', 'sim'),
+(3, 'Classic Rock Collection', '2023-05-20', 18.50, 'Online Store', 'não'),
+(4, 'Best of Jazz', '2023-07-10', 22.75, 'Local Record Shop', 'sim'),
+(5, '90s Hits', '2023-09-02', 16.99, 'CD Warehouse', 'não'),
+(6, 'Indie Vibes', '2023-11-18', 21.30, 'Music Festival', 'sim'),
+(7, 'Hip Hop Essentials', '2024-01-07', 24.50, 'Online Store', 'sim'),
+(8, 'Country Classics', '2024-02-29', 20.25, 'Local Market', 'não'),
+(9, 'Electronic Beats', '2024-04-15', 23.00, 'Tech Store', 'sim'),
+(10, 'Reggae Vibes', '2024-06-08', 17.75, 'Record Fair', 'não');
 
-INSERT INTO Departamentos (Codigo_depto, NomeDepto) VALUES
-(1, 'Logistica'),
-(2, 'Administração'),
-(3, 'Desenvolvimento');
 
-INSERT INTO Funcionarios (Codigo_func, NomeFunc, SobreNome, DataNasci, CPF, RG, Endereco, CEP, Cidade, Fone, Funcao, Salario, CodDepartamento) VALUES
-(1, 'João', 'Silva', '1990-05-15', '123.456.789-00', '123456789', 'Rua A, 123', '12345-678', 'Cidade A', '123456789', 'Analista', 5000.00, 1),
-(2, 'Maria', 'Santos', '1985-08-20', '987.654.321-00', '987654321', 'Rua B, 456', '98765-432', 'Cidade B', '987654321', 'Desenvolvedor', 6000.00, 2),
-(3, 'Pedro', 'Oliveira', '1988-12-10', '111.222.333-44', '111222333', 'Rua C, 789', '54321-098', 'Cidade C', '111222333', 'Gerente', 8000.00, 1),
-(4, 'Ana', 'Souza', '1995-03-25', '555.666.777-88', '555666777', 'Rua D, 321', '13579-246', 'Cidade A', '555666777', 'Analista', 5000.00, 3),
-(5, 'Carlos', 'Ferreira', '1992-07-30', '999.888.777-66', '999888777', 'Rua E, 654', '98765-123', 'Cidade B', '999888777', 'Desenvolvedor', 6000.00, 2),
-(6, 'Juliana', 'Martins', '1980-11-05', '444.333.222-11', '444333222', 'Rua F, 987', '24680-135', 'Cidade C', '444333222', 'Gerente', 8000.00, 3),
-(7, 'Lucas', 'Rodrigues', '1993-09-18', '777.888.999-00', '777888999', 'Rua G, 321', '54321-678', 'Cidade A', '777888999', 'Analista', 5000.00, 1),
-(8, 'Fernanda', 'Almeida', '1982-04-12', '222.333.444-55', '222333444', 'Rua H, 456', '98765-432', 'Cidade B', '222333444', 'Desenvolvedor', 6000.00, 2),
-(9, 'Rafael', 'Gomes', '1991-06-28', '666.555.444-33', '666555444', 'Rua I, 789', '24680-135', 'Cidade C', '666555444', 'Gerente', 8000.00, 3),
-(10, 'Patrícia', 'Pereira', '1987-02-14', '333.444.555-66', '333444555', 'Rua J, 123', '13579-246', 'Cidade A', '333444555', 'Analista', 5000.00, 1);
+INSERT INTO Musica (COD_CD, Numero_Musica, Nome_Musica, Artista, Tempo)
+VALUES
+(1, 1, 'Bohemian Rhapsody', 'Queen', '00:05:55'),
+(1, 2, 'Don''t Stop Believin''', 'Journey', '00:04:11'),
+(1, 3, 'Hotel California', 'Eagles', '00:06:30'),
+(2, 1, 'Billie Jean', 'Michael Jackson', '00:04:54'),
+(2, 2, 'Like a Prayer', 'Madonna', '00:05:51'),
+(2, 3, 'Sweet Child o'' Mine', 'Guns N'' Roses', '00:05:56'),
+(3, 1, 'Stairway to Heaven', 'Led Zeppelin', '00:08:02'),
+(3, 2, 'Imagine', 'John Lennon', '00:03:03'),
+(3, 3, 'Smells Like Teen Spirit', 'Nirvana', '00:05:01'),
+(4, 1, 'Take Five', 'Dave Brubeck', '00:05:24'),
+(4, 2, 'So What', 'Miles Davis', '00:09:22'),
+(4, 3, 'My Favorite Things', 'John Coltrane', '00:13:42'),
+(5, 1, 'Smells Like Teen Spirit', 'Nirvana', '00:05:01'),
+(5, 2, 'Wannabe', 'Spice Girls', '00:02:52'),
+(5, 3, 'I Want It That Way', 'Backstreet Boys', '00:03:33'),
+(6, 1, 'Loser', 'Beck', '00:03:55'),
+(6, 2, 'Creep', 'Radiohead', '00:03:55'),
+(6, 3, 'No Rain', 'Blind Melon', '00:03:37'),
+(7, 1, 'Lose Yourself', 'Eminem', '00:05:26'),
+(7, 2, 'California Love', '2Pac', '00:04:45'),
+(7, 3, 'Gin and Juice', 'Snoop Dogg', '00:03:31'),
+(8, 1, 'Take Me Home, Country Roads', 'John Denver', '00:03:08'),
+(8, 2, 'The Gambler', 'Kenny Rogers', '00:03:32'),
+(8, 3, 'Ring of Fire', 'Johnny Cash', '00:02:37'),
+(9, 1, 'Around the World', 'Daft Punk', '00:07:09'),
+(9, 2, 'Blue Monday', 'New Order', '00:07:29'),
+(9, 3, 'One More Time', 'Daft Punk', '00:05:20'),
+(10, 1, 'Could You Be Loved', 'Bob Marley', '00:03:57'),
+(10, 2, 'Redemption Song', 'Bob Marley', '00:03:49'),
+(10, 3, 'No Woman, No Cry', 'Bob Marley', '00:07:09');
 
---Select's Base
-Select * from Departamentos;
-Select * from Funcionarios;
 
---Exercicio 1
-Select NomeFunc, Sobrenome from Funcionarios order by Sobrenome;
 
---Exercicio 2
-Select * from Funcionarios order by Cidade;
+-- EX01 
+SELECT * FROM CDs;
 
---Exercicio 3
-Select * from Funcionarios where Salario>1000 order by NomeFunc;
+-- EX02
+SELECT Nome_CD , Dt_Compra FROM CDs ORDER BY Nome_CD;
 
---Exercicio 4
-Select Datanasci, NomeFunc from Funcionarios order by Datanasci desc;
 
---Exercicio 5
-Select Sobrenome, NomeFunc, Cidade, Endereco, Fone from Funcionarios;
+-- EX03
+SELECT Nome_CD , Dt_Compra FROM CDs ORDER BY Dt_Compra DESC;
 
---Exercicio 6
-Select sum(salario) from Funcionarios;
 
---Exercicio 7
-Select NomeFunc, Salario, Funcao from Funcionarios order by Funcao;
+-- EX04
+SELECT Nome_CD , Dt_Compra, Valor_Pago FROM CDs ORDER BY Valor_Pago DESC;
 
---Exercicio 8
--- Supervisos = Desenvolvedor
-Select * from Funcionarios where Funcao like 'Desenvolvedor'
 
---Exercicio 9
-select count(Codigo_func) from Funcionarios;
+-- EX05
+SELECT SUM(Valor_Pago) AS Soma_Valor FROM CDs;
 
---Exercicio 10
-Select avg(Salario) from Funcionarios;
 
---Exercicio 11
-Select NomeFunc from Funcionarios where Cidade like 'Cidade A' and Funcao like 'Analista';
+-- EX06
+SELECT * FROM Musica WHERE COD_CD = 1;
 
+-- EX07
+SELECT Nome_Musica, Artista FROM Musica;
+
+
+-- EX08
+SELECT Numero_Musica, Nome_Musica, Tempo FROM MUSICA WHERE COD_CD = 5 ORDER BY Numero_Musica;
+
+
+-- EX09
+SELECT COUNT(Numero_Musica) FROM Musica;
+
+-- EX10
+SELECT Nome_Musica FROM Musica WHERE Artista = 'JOSÉ PEDRO';
+
+-- EX11
+SELECT Nome_CD FROM CDs WHERE Local_Compra = 'SUBMARINO';
+
+-- EX12
+SELECT * FROM Musica ORDER BY Nome_Musica;
+
+-- EX13
+SELECT * FROM CDs WHERE Album = 'SIM';
+
+-- EX14
+SELECT AVG(Valor_Pago) AS Media_Valor FROM CDs
