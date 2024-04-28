@@ -1,0 +1,31 @@
+Body{
+    background-color: #E0DffD;
+    overflow-x: hidden;
+}
+
+.color-roxo{
+    background-color: #272747; 
+}
+
+.img{
+    width: 50px;
+    height: 50px;
+}
+
+.fundo{
+    z-index: -1;
+
+}
+
+
+html {
+  box-sizing: border-box;
+}
+html *,
+html *:before,
+html *:after {
+  box-sizing: inherit;
+  font-family: "Vollkorn", serif;;
+}
+
+
