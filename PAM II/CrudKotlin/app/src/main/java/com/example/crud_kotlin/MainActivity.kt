@@ -3,6 +3,7 @@ package com.example.crud_kotlin
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -27,9 +28,14 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import androidx.room.Room
+import com.example.crud_kotlin.RoomBD.Pessoa
 import com.example.crud_kotlin.RoomBD.PessoaDataBase
 import com.example.crud_kotlin.ui.theme.CrudKotlinTheme
+import com.example.crud_kotlin.viewModel.PessoaViewModel
+import com.example.crud_kotlin.viewModel.Repository
 
 class MainActivity : ComponentActivity() {
 
@@ -40,6 +46,16 @@ class MainActivity : ComponentActivity() {
             "pessoa.db"
         ).build()
     }
+
+    private val viewModel by viewModels<PessoaViewModel>(
+        factoryProducer = {
+            object : ViewModelProvider.Factory{
+                override fun <T : ViewModel> create(modelClass: Class<T>): T {
+                    return PessoaViewModel(Repository(db)) as T
+                }
+            }
+        }
+    )
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -49,7 +65,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    App()
+                    App(viewModel)
                 }
             }
         }
@@ -57,7 +73,7 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun App(){
+fun App(viewModel: PessoaViewModel){
     var nome by remember {
         mutableStateOf("")
     }
@@ -65,6 +81,11 @@ fun App(){
     var telefone by remember {
         mutableStateOf("")
     }
+
+    val pessoa = Pessoa(
+        nome,
+        telefone
+    )
 
     Column(
         Modifier
@@ -120,7 +141,9 @@ fun App(){
                 .padding(20.dp),
             Arrangement.Center
         ) {
-         Button(onClick = { /*TODO*/ }) {
+         Button(onClick = {
+             viewModel.upsertPessoa(pessoa)
+         }) {
              Text(text = "Cadastrar")
          }
         }
@@ -128,22 +151,4 @@ fun App(){
 
 
 }
-
-
-
-
-@Preview
-@Composable
-fun AppPreview(){
-    CrudKotlinTheme {
-        // A surface container using the 'background' color from the theme
-        Surface(
-            modifier = Modifier.fillMaxSize(),
-            color = MaterialTheme.colorScheme.background
-        ) {
-            App()
-        }
-    }
-}
-
 
