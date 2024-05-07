@@ -54,7 +54,7 @@ and Nome like 'U%'
 Select Nome,Salario from Pessoas order by Salario desc;
 
 -- Codigo para exibir Nomes em ordem alfabetica
-Select Nome,Email from Pessoas order by Nome desc;
+Select Nome,Email from Pessoas order by Nome;
 
 --Codigo para mostrar o salario mais alto
 Select max(Salario) from Pessoas
