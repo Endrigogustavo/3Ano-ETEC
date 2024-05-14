@@ -95,7 +95,7 @@ ON Departamentos.Codigo_depto = Funcionarios.CodDepartamento
 WHERE Funcionarios.Funcao like 'Supervisor'
 
 -- INNER JOIN EX3
-SELECT Departamentos.NomeDepto, Funcionarios.NomeFunc
+SELECT Departamentos.NomeDepto, Funcionarios.NomeFunc, Funcionarios.SobreNome
 FROM Departamentos INNER JOIN Funcionarios
 ON Departamentos.Codigo_depto = Funcionarios.CodDepartamento
 ORDER BY Departamentos.NomeDepto, Funcionarios.NomeFunc
