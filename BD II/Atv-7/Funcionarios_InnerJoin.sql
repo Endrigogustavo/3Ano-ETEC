@@ -1,5 +1,5 @@
-CREATE DATABASE BdEmpresa1
-USE BdEmpresa1
+CREATE DATABASE BdEmpresa
+USE BdEmpresa
 
 Create table Departamentos(
 	Codigo_depto int,
